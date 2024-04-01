@@ -1,0 +1,257 @@
+package com.example.calc8027;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.button.MaterialButton;
+
+import java.text.DecimalFormat;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final char add = '+';
+    private static final char sub = '-';
+    private static final char prod = '*';
+    private static final char div = '/';
+    private static final char mod = '%';
+    private char curSymbol;
+    private double firstVal = Double.NaN;
+    private double secondVal;
+    private TextView inDisp, outDisp;
+    private DecimalFormat decForm;
+    private MaterialButton button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,buttonDot,buttonAdd,buttonSub,buttonProd,buttonDiv,buttonEqual,buttonClear,buttonRem;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        decForm = new DecimalFormat("#.#####");
+        inDisp = findViewById(R.id.input);
+        outDisp = findViewById(R.id.output);
+
+        button0 = findViewById(R.id.zero);
+        button1 = findViewById(R.id.one);
+        button2 = findViewById(R.id.two);
+        button3 = findViewById(R.id.three);
+        button4 = findViewById(R.id.four);
+        button5 = findViewById(R.id.five);
+        button6 = findViewById(R.id.six);
+        button7 = findViewById(R.id.seven);
+        button8 = findViewById(R.id.eight);
+        button9 = findViewById(R.id.nine);
+        buttonDot = findViewById(R.id.dot);
+        buttonAdd = findViewById(R.id.sum);
+        buttonSub = findViewById(R.id.diff);
+        buttonProd = findViewById(R.id.product);
+        buttonDiv = findViewById(R.id.divide);
+        buttonEqual = findViewById(R.id.result);
+        buttonClear = findViewById(R.id.clear);
+        buttonRem = findViewById(R.id.rem);
+
+        button0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "0");
+            }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "1");
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "2");
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "3");
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "4");
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "5");
+            }
+        });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "6");
+            }
+        });
+
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "7");
+            }
+        });
+
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "8");
+            }
+        });
+
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + "9");
+            }
+        });
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalcOperations();
+                curSymbol = add;
+                outDisp.setText(decForm.format(firstVal) + "+");
+                inDisp.setText(null);
+            }
+        });
+
+        buttonSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalcOperations();
+                curSymbol = sub;
+                outDisp.setText(decForm.format(firstVal) + "-");
+                inDisp.setText(null);
+            }
+        });
+
+        buttonProd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalcOperations();
+                curSymbol = prod;
+                outDisp.setText(decForm.format(firstVal) + "*");
+                inDisp.setText(null);
+            }
+        });
+
+        buttonDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalcOperations();
+                curSymbol = div;
+                outDisp.setText(decForm.format(firstVal) + "/");
+                inDisp.setText(null);
+            }
+        });
+
+        buttonRem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalcOperations();
+                curSymbol = mod;
+                outDisp.setText(decForm.format(firstVal) + "%");
+                inDisp.setText(null);
+            }
+        });
+
+        buttonDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inDisp.setText(inDisp.getText() + ".");
+            }
+        });
+
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (inDisp.getText().length()>0){
+                    CharSequence curText = inDisp.getText();
+                    inDisp.setText(curText.subSequence(0,curText.length() - 1));
+                } else {
+                    firstVal = Double.NaN;
+                    secondVal = Double.NaN;
+                    inDisp.setText("");
+                    outDisp.setText("");
+                }
+            }
+        });
+
+        buttonEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalcOperations();
+                outDisp.setText(decForm.format(firstVal));
+                inDisp.setText(decForm.format(firstVal));
+                //firstVal = Double.parseDouble(outDisp.getText().toString());
+                curSymbol = '0';
+            }
+        });
+    }
+        private void CalcOperations(){
+            if (!Double.isNaN(firstVal)){
+                secondVal = Double.parseDouble(inDisp.getText().toString());
+                inDisp.setText(null);
+
+            switch (curSymbol) {
+                case add:
+                    firstVal = this.firstVal + secondVal;
+                    break;
+
+                case sub:
+                    firstVal = this.firstVal - secondVal;
+                    break;
+
+                case prod:
+                    firstVal = this.firstVal * secondVal;
+                    break;
+
+                case div:
+                    if (secondVal == 0)
+                        break;
+                    firstVal = this.firstVal / secondVal;
+                    break;
+
+                case mod:
+                    if (secondVal == 0)
+                        break;
+                    firstVal = this.firstVal % secondVal;
+                    break;
+            }
+            } else {
+                try{
+                    firstVal = Double.parseDouble(inDisp.getText().toString());
+                } catch (Exception e){
+
+                }
+            }
+        }
+}
