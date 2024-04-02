@@ -1,5 +1,6 @@
 package com.example.calc8027;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -21,12 +22,11 @@ public class MainActivity extends AppCompatActivity {
     private static final char prod = '*';
     private static final char div = '/';
     private static final char mod = '%';
-    private char curSymbol;
+    private char curSymbol = '0';
     private double firstVal = Double.NaN;
     private double secondVal;
     private TextView inDisp, outDisp;
     private DecimalFormat decForm;
-    private MaterialButton button0,button1,button2,button3,button4,button5,button6,button7,button8,button9,buttonDot,buttonAdd,buttonSub,buttonProd,buttonDiv,buttonEqual,buttonClear,buttonRem;
 
 
     @Override
@@ -44,24 +44,24 @@ public class MainActivity extends AppCompatActivity {
         inDisp = findViewById(R.id.input);
         outDisp = findViewById(R.id.output);
 
-        button0 = findViewById(R.id.zero);
-        button1 = findViewById(R.id.one);
-        button2 = findViewById(R.id.two);
-        button3 = findViewById(R.id.three);
-        button4 = findViewById(R.id.four);
-        button5 = findViewById(R.id.five);
-        button6 = findViewById(R.id.six);
-        button7 = findViewById(R.id.seven);
-        button8 = findViewById(R.id.eight);
-        button9 = findViewById(R.id.nine);
-        buttonDot = findViewById(R.id.dot);
-        buttonAdd = findViewById(R.id.sum);
-        buttonSub = findViewById(R.id.diff);
-        buttonProd = findViewById(R.id.product);
-        buttonDiv = findViewById(R.id.divide);
-        buttonEqual = findViewById(R.id.result);
-        buttonClear = findViewById(R.id.clear);
-        buttonRem = findViewById(R.id.rem);
+        MaterialButton button0 = findViewById(R.id.zero);
+        MaterialButton button1 = findViewById(R.id.one);
+        MaterialButton button2 = findViewById(R.id.two);
+        MaterialButton button3 = findViewById(R.id.three);
+        MaterialButton button4 = findViewById(R.id.four);
+        MaterialButton button5 = findViewById(R.id.five);
+        MaterialButton button6 = findViewById(R.id.six);
+        MaterialButton button7 = findViewById(R.id.seven);
+        MaterialButton button8 = findViewById(R.id.eight);
+        MaterialButton button9 = findViewById(R.id.nine);
+        MaterialButton buttonDot = findViewById(R.id.dot);
+        MaterialButton buttonAdd = findViewById(R.id.sum);
+        MaterialButton buttonSub = findViewById(R.id.diff);
+        MaterialButton buttonProd = findViewById(R.id.product);
+        MaterialButton buttonDiv = findViewById(R.id.divide);
+        MaterialButton buttonEqual = findViewById(R.id.result);
+        MaterialButton buttonClear = findViewById(R.id.clear);
+        MaterialButton buttonRem = findViewById(R.id.rem);
 
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,64 +136,94 @@ public class MainActivity extends AppCompatActivity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalcOperations();
-                curSymbol = add;
-                outDisp.setText(decForm.format(firstVal) + "+");
-                inDisp.setText(null);
+                if (curSymbol != '0') {
+                } else {
+                    firstVal = Double.parseDouble(inDisp.getText().toString());
+                    CalcOperations();
+                    curSymbol = add;
+                    outDisp.setText(decForm.format(firstVal) + "+");
+                    inDisp.setText(null);
+                }
             }
         });
 
         buttonSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalcOperations();
-                curSymbol = sub;
-                outDisp.setText(decForm.format(firstVal) + "-");
-                inDisp.setText(null);
+                if (curSymbol != '0') {
+                } else {
+                    firstVal = Double.parseDouble(inDisp.getText().toString());
+                    CalcOperations();
+                    curSymbol = sub;
+                    outDisp.setText(decForm.format(firstVal) + "-");
+                    inDisp.setText(null);
+                }
             }
         });
 
         buttonProd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalcOperations();
-                curSymbol = prod;
-                outDisp.setText(decForm.format(firstVal) + "*");
-                inDisp.setText(null);
+                if (curSymbol != '0') {
+                } else {
+                    firstVal = Double.parseDouble(inDisp.getText().toString());
+                    CalcOperations();
+                    curSymbol = prod;
+                    outDisp.setText(decForm.format(firstVal) + "*");
+                    inDisp.setText(null);
+                }
             }
         });
 
         buttonDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalcOperations();
-                curSymbol = div;
-                outDisp.setText(decForm.format(firstVal) + "/");
-                inDisp.setText(null);
+                if (curSymbol != '0') {
+                } else {
+                    firstVal = Double.parseDouble(inDisp.getText().toString());
+                    CalcOperations();
+                    curSymbol = div;
+                    outDisp.setText(decForm.format(firstVal) + "/");
+                    inDisp.setText(null);
+                }
             }
         });
 
         buttonRem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalcOperations();
-                curSymbol = mod;
-                outDisp.setText(decForm.format(firstVal) + "%");
-                inDisp.setText(null);
+                if (curSymbol != '0') {
+                } else {
+                    firstVal = Double.parseDouble(inDisp.getText().toString());
+                    CalcOperations();
+                    curSymbol = mod;
+                    outDisp.setText(decForm.format(firstVal) + "%");
+                    inDisp.setText(null);
+                }
             }
         });
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inDisp.setText(inDisp.getText() + ".");
+                if (inDisp.getText().toString().matches("[0-9]*\\.[0-9]*")){
+                } else if (inDisp.getText().toString().equals("")) {
+                    inDisp.setText("0.");
+                } else{
+                    inDisp.setText(inDisp.getText() + ".");
+                }
             }
         });
 
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (inDisp.getText().length()>0){
+                if (curSymbol != '0'){
+                    CharSequence curText = outDisp.getText();
+                    inDisp.setText(curText.subSequence(0,curText.length() - 1));
+                    outDisp.setText(curText.subSequence(0,curText.length() - 1));
+                    curSymbol = '0';
+                } else if (inDisp.getText().length()>0){
                     CharSequence curText = inDisp.getText();
                     inDisp.setText(curText.subSequence(0,curText.length() - 1));
                 } else {
@@ -208,11 +238,14 @@ public class MainActivity extends AppCompatActivity {
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalcOperations();
-                outDisp.setText(decForm.format(firstVal));
-                inDisp.setText(decForm.format(firstVal));
-                //firstVal = Double.parseDouble(outDisp.getText().toString());
-                curSymbol = '0';
+                if (inDisp.getText().toString().equals("")){
+                }else{
+                    CalcOperations();
+                    outDisp.setText(decForm.format(firstVal));
+                    inDisp.setText(decForm.format(firstVal));
+                    /*firstVal = Double.parseDouble(outDisp.getText().toString());*/
+                    curSymbol = '0';
+                }
             }
         });
     }
