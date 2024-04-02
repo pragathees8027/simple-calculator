@@ -238,7 +238,12 @@ public class MainActivity extends AppCompatActivity {
         buttonEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (inDisp.getText().toString().equals("")){
+                if (inDisp.getText().toString().equals("")) {
+                }
+                else if (!inDisp.getText().toString().equals("") && curSymbol == '0'){
+                    firstVal = Double.parseDouble(inDisp.getText().toString());
+                    outDisp.setText(decForm.format(firstVal));
+                    //inDisp.setText(decForm.format(firstVal));
                 }else{
                     CalcOperations();
                     outDisp.setText(decForm.format(firstVal));
