@@ -179,11 +179,14 @@ public class MainActivity extends AppCompatActivity {
                         inDisp.setText(null);
                     }
                 } else {
+                    if (inDisp.getText().length() == 0){
+                    } else {
                         firstVal = Double.parseDouble(inDisp.getText().toString());
                         CalcOperations();
                         curSymbol = add;
                         outDisp.setText(decForm.format(firstVal) + "+");
                         inDisp.setText(null);
+                    }
                 }
             }
         });
@@ -203,11 +206,14 @@ public class MainActivity extends AppCompatActivity {
                         inDisp.setText(null);
                     }
                 } else {
+                    if (inDisp.getText().length() == 0){
+                    } else {
                         firstVal = Double.parseDouble(inDisp.getText().toString());
                         CalcOperations();
                         curSymbol = sub;
                         outDisp.setText(decForm.format(firstVal) + "-");
                         inDisp.setText(null);
+                    }
                 }
             }
         });
@@ -227,11 +233,14 @@ public class MainActivity extends AppCompatActivity {
                         inDisp.setText(null);
                     }
                 } else {
+                    if (inDisp.getText().length() == 0){
+                    } else {
                         firstVal = Double.parseDouble(inDisp.getText().toString());
                         CalcOperations();
                         curSymbol = prod;
                         outDisp.setText(decForm.format(firstVal) + "*");
                         inDisp.setText(null);
+                    }
                 }
             }
         });
@@ -251,11 +260,14 @@ public class MainActivity extends AppCompatActivity {
                     inDisp.setText(null);
                     }
                 } else {
-                    firstVal = Double.parseDouble(inDisp.getText().toString());
-                    CalcOperations();
-                    curSymbol = div;
-                    outDisp.setText(decForm.format(firstVal) + "/");
-                    inDisp.setText(null);
+                    if (inDisp.getText().length() == 0){
+                    } else {
+                        firstVal = Double.parseDouble(inDisp.getText().toString());
+                        CalcOperations();
+                        curSymbol = div;
+                        outDisp.setText(decForm.format(firstVal) + "/");
+                        inDisp.setText(null);
+                    }
                 }
             }
         });
@@ -275,11 +287,14 @@ public class MainActivity extends AppCompatActivity {
                         inDisp.setText(null);
                     }
                 } else {
+                    if (inDisp.getText().length() == 0){
+                    } else {
                         firstVal = Double.parseDouble(inDisp.getText().toString());
                         CalcOperations();
                         curSymbol = mod;
                         outDisp.setText(decForm.format(firstVal) + "%");
                         inDisp.setText(null);
+                    }
                 }
             }
         });
