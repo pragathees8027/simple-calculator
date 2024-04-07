@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (curSymbol == '/' || curSymbol == '%'){
+                } else if (inDisp.getText().toString().equals("0")) {
                 } else {
                     inDisp.setText(inDisp.getText() + "0");
                 }
@@ -76,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("1");
+                else
                 inDisp.setText(inDisp.getText() + "1");
             }
         });
@@ -83,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("2");
+                else
                 inDisp.setText(inDisp.getText() + "2");
             }
         });
@@ -90,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("3");
+                else
                 inDisp.setText(inDisp.getText() + "3");
             }
         });
@@ -97,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("4");
+                else
                 inDisp.setText(inDisp.getText() + "4");
             }
         });
@@ -104,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("5");
+                else
                 inDisp.setText(inDisp.getText() + "5");
             }
         });
@@ -111,6 +127,9 @@ public class MainActivity extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("6");
+                else
                 inDisp.setText(inDisp.getText() + "6");
             }
         });
@@ -118,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("7");
+                else
                 inDisp.setText(inDisp.getText() + "7");
             }
         });
@@ -125,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("8");
+                else
                 inDisp.setText(inDisp.getText() + "8");
             }
         });
@@ -132,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (inDisp.getText().toString().equals("0"))
+                    inDisp.setText("9");
+                else
                 inDisp.setText(inDisp.getText() + "9");
             }
         });
